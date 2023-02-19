@@ -18,7 +18,7 @@ import { Observable, Observer } from 'rxjs';
 })
 export class TodoListComponent implements OnInit {
   public textInput: string;
-  todos$!: Observable<Todo[]>;
+  todos: Todo[] = [];
 
   constructor(public todoService: TodoService) {
     this.todoService = todoService;
@@ -36,5 +36,11 @@ export class TodoListComponent implements OnInit {
     this.textInput = '';
   }
 
-  ngOnInit() {}
+  private getTodos(): void {
+    this.todoService.getTodos().subscribe((todos) => (this.todos = todos));
+  }
+
+  ngOnInit() {
+    this.getTodos();
+  }
 }
