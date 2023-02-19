@@ -17,6 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class TodoListComponent implements OnInit {
   public textInput: string;
+  public todos: Todo[];
+
   constructor(public todoService: TodoService) {
     this.todoService = todoService;
   }
@@ -37,5 +39,9 @@ export class TodoListComponent implements OnInit {
     this.textInput = '';
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.todoService.getTodos().subscribe((data) => {
+      this.todos = data;
+    });
+  }
 }
