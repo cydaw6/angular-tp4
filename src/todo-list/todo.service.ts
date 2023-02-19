@@ -24,7 +24,9 @@ export class TodoService {
   }
 
   getTodos(): Observable<Todo[]> {
-    return this.http.get<Todo[]>(this.TodoUrl);
+    return this.http.get(this.TodoUrl).map((resp) => {
+      return resp.json().data;
+    });
     /* 
     .map(
       (res: Response) => {

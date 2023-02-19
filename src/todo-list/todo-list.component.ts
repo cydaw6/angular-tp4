@@ -37,10 +37,14 @@ export class TodoListComponent implements OnInit {
   }
 
   private getTodos(): void {
-    this.todoService.getTodos().subscribe((todos) => {
-      this.todos = todos;
-      console.log(this.todos);
-    });
+    this.todoService.getTodos().subscribe(
+      (todos) => {
+        this.todos = todos as Todo[];
+        console.log(this.todos);
+      },
+      (error) => console.log(error),
+      () => console.log('Complete')
+    );
   }
 
   ngOnInit() {
