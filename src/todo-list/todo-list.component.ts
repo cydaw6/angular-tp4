@@ -22,11 +22,7 @@ export class TodoListComponent implements OnInit {
   }
 
   getTodos(): Todo[] {
-    let datas: Todo[];
-    this.todoService.getTodos().subscribe((data) => {
-      datas = data;
-    });
-    return datas;
+    return [];
   }
 
   updateTodo(todo: Todo): void {
