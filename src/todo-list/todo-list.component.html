@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div *ngFor="let todo of todoService.getTodos()">
+    <div *ngFor="let todo of getTodos()">
       <todo-item [todo]="todo" (updateLabelEvent)="updateTodo($event)">
       </todo-item>
     </div>

@@ -1,11 +1,14 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Todo } from './model/todo';
+import { from, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class TodoService {
   public todos: Todo[] = [];
 
-  constructor() {
+  constructor(private http: HttpClient) {
     let savedTodos = localStorage.getItem('todos');
     if (savedTodos != null) {
       this.todos = JSON.parse(savedTodos);
@@ -17,14 +20,16 @@ export class TodoService {
     localStorage.setItem('todos', JSON.stringify(this.todos));
   }
 
-  getTodos(): Todo[] {
-    return this.todos;
+  getTodos(): Observable<Todo[]> {
+    return this.http.get<Todo[]>(
+      'https://europe-west1-cours-angular-263913.cloudfunctions.net/todoapp/todo'
+    );
   }
 
   createTodo(label: string): void {
     if (!label) return;
     this.todos.push({
-      id: Math.floor(Math.random() * 1000),
+      id: '' + Math.floor(Math.random() * 1000),
       creationDate: new Date().valueOf(),
       label: label,
       done: false,
