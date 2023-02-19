@@ -1,8 +1,7 @@
 <div class="container">
   <div class="row">
     <div *ngFor="let todo of todos">
-      <todo-item [todo]="todo" (updateLabelEvent)="updateTodo($event)">
-      </todo-item>
+      {{ todo.id }}
     </div>
   </div>
 

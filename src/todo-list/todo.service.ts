@@ -8,12 +8,15 @@ import { map } from 'rxjs/operators';
 export class TodoService {
   public todos: Todo[] = [];
 
+  private TodoUrl =
+    'https://europe-west1-cours-angular-263913.cloudfunctions.net/todoapp/todo';
+
   constructor(private http: HttpClient) {
-    let savedTodos = localStorage.getItem('todos');
+    /* let savedTodos = localStorage.getItem('todos');
     if (savedTodos != null) {
       this.todos = JSON.parse(savedTodos);
       console.log(JSON.parse(savedTodos));
-    }
+    } */
   }
 
   saveTodos() {
@@ -21,9 +24,7 @@ export class TodoService {
   }
 
   getTodos(): Observable<Todo[]> {
-    const url =
-      'https://europe-west1-cours-angular-263913.cloudfunctions.net/todoapp/todo';
-    return this.http.get<Todo[]>(url);
+    return this.http.get<Todo[]>(this.TodoUrl);
     /* 
     .map(
       (res: Response) => {
