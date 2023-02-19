@@ -1,7 +1,11 @@
-<div class="container">
+<div class="container" *ngIf="loaded; else notLoaded">
   <div class="row">
     <div *ngFor="let todo of todos">
-      <todo-item [todo]="todo"></todo-item>
+      <todo-item
+        [todo]="todo"
+        (updateLabelEvent)="updateTodo($event)"
+        (deleteTodoEvent)="deleteTodo($event)"
+      ></todo-item>
     </div>
   </div>
 
@@ -27,3 +31,5 @@
     </button>
   </div>
 </div>
+
+<div #notLoaded>not loaded</div>

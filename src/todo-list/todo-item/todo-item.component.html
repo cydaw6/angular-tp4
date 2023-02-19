@@ -26,8 +26,12 @@
         </div>
         <ng-template #elseBlock>
           {{ todo.label }}
-
-          <i class="material-icons right" (click)="changeEditMode()">edit</i>
+          <i class="material-icons right" id="delete" (click)="delete()"
+            >delete</i
+          >
+          <i class="material-icons right" id="update" (click)="changeEditMode()"
+            >edit</i
+          >
         </ng-template>
       </span>
     </div>
