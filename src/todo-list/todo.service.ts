@@ -21,9 +21,18 @@ export class TodoService {
   }
 
   getTodos(): Observable<Todo[]> {
-    return this.http.get<Todo[]>(
-      'https://europe-west1-cours-angular-263913.cloudfunctions.net/todoapp/todo'
-    );
+    const url =
+      'https://europe-west1-cours-angular-263913.cloudfunctions.net/todoapp/todo';
+    return this.http.get<Todo[]>(url);
+    /* 
+    .map(
+      (res: Response) => {
+        return res.json() as = Todo[];
+      }).catch(
+        (error: Response) => {
+          return Observable.throw(error.json());
+        }
+      )); */
   }
 
   createTodo(label: string): void {

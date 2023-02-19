@@ -6,6 +6,7 @@ import { Todo } from './model/todo';
 import { TodoItemComponent } from './todo-item/todo-item.component';
 import { TodoService } from './todo.service';
 import { HttpClientModule } from '@angular/common/http';
+import { Observable, Observer } from 'rxjs';
 
 @Component({
   selector: 'app-todo-list',
@@ -17,14 +18,10 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class TodoListComponent implements OnInit {
   public textInput: string;
-  public todos: Todo[];
+  todos$!: Observable<Todo[]>;
 
   constructor(public todoService: TodoService) {
     this.todoService = todoService;
-  }
-
-  getTodos(): Todo[] {
-    return [];
   }
 
   updateTodo(todo: Todo): void {
@@ -39,9 +36,5 @@ export class TodoListComponent implements OnInit {
     this.textInput = '';
   }
 
-  ngOnInit() {
-    this.todoService.getTodos().subscribe((data) => {
-      this.todos = data;
-    });
-  }
+  ngOnInit() {}
 }
