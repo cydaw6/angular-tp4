@@ -18,7 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 export class TodoListComponent implements OnInit {
   public textInput: string;
   todos: Todo[] = [];
-  loaded: boolean = false;
+  loaded: boolean = true;
 
   constructor(public todoService: TodoService) {
     this.todoService = todoService;

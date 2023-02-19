@@ -1,4 +1,26 @@
-<div class="container" *ngIf="loaded; else notLoaded">
+<div class="container" *ngIf="loaded; else notLoaded" style="pading: 5em;">
+  <div class="row" style="text-align: center; margin: 2em;">
+    <label name="label">
+      New task
+      <input
+        type="text"
+        [(ngModel)]="textInput"
+        name="label"
+        (keyup.enter)="addTodo()"
+      />
+      <button
+        class="btn waves-effect waves-light"
+        type="submit"
+        name="action"
+        (click)="addTodo()"
+        style="margin-bottom: 3em;"
+      >
+        Submit
+        <i class="material-icons right">send</i>
+      </button>
+    </label>
+  </div>
+
   <div class="row">
     <div *ngFor="let todo of todos">
       <todo-item
@@ -8,28 +30,27 @@
       ></todo-item>
     </div>
   </div>
-
-  <div>
-    <label name="label">
-      New task
-      <input
-        type="text"
-        [(ngModel)]="textInput"
-        name="label"
-        (keyup.enter)="addTodo()"
-      />
-    </label>
-
-    <button
-      class="btn waves-effect waves-light"
-      type="submit"
-      name="action"
-      (click)="addTodo()"
-    >
-      Submit
-      <i class="material-icons right">send</i>
-    </button>
-  </div>
 </div>
 
-<div #notLoaded>not loaded</div>
+<ng-template #notLoaded>
+  <div class="container" style="text-align: center; padding: 20%;">
+    <p
+      style="font-family: 'Roboto Mono', monospace; font-size: x-large; font-wheight: bold;"
+    >
+      fetching todos...
+    </p>
+    <div class="preloader-wrapper active">
+      <div class="spinner-layer spinner-red-only">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div>
+        <div class="gap-patch">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
