@@ -23,19 +23,12 @@ export class TodoService {
     localStorage.setItem('todos', JSON.stringify(this.todos));
   }
 
-  getTodos(): Observable<Todo[]> {
-    return this.http.get(this.TodoUrl).map((resp) => {
-      return resp.json().data;
-    });
-    /* 
-    .map(
-      (res: Response) => {
-        return res.json() as = Todo[];
-      }).catch(
-        (error: Response) => {
-          return Observable.throw(error.json());
-        }
-      )); */
+  getTodos(): Observable<any> {
+    return this.http.get<Todo[]>(this.TodoUrl).pipe(
+      map((response) => {
+        return response;
+      })
+    );
   }
 
   createTodo(label: string): void {

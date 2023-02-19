@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div *ngFor="let todo of todos">
-      {{ todo.id }}
+      <todo-item [todo]="todo"></todo-item>
     </div>
   </div>
 
